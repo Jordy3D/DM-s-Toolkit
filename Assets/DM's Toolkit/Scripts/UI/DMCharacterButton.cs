@@ -12,10 +12,7 @@ public class DMCharacterButton : MonoBehaviour
 
   public GameObject statusPrefab;
 
-  private void OnEnable()
-  {
-    statusHolder = character.transform.Find("StatusHolder");
-  }
+  public DMCharacterMenu menu;
 
   public void ToggleStatus(string status)
   {
@@ -35,5 +32,20 @@ public class DMCharacterButton : MonoBehaviour
   void UpdateRange()
   {
 
+  }
+
+  public void ToggleName()
+  {
+    character.showName = !character.showName;
+    character.UpdateName();
+  }
+
+  public void DeleteCharacter()
+  {
+    menu.transform.SetParent(null);
+    menu.gameObject.SetActive(false);
+    Destroy(character.gameObject);
+
+    character = null;
   }
 }

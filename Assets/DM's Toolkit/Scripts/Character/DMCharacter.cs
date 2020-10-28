@@ -11,7 +11,11 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
   public Sprite characterImage;
   public SpriteRenderer characterPortrait;
 
+  public bool showName = true;
   public TextMeshPro characterNameText;
+
+  public Transform statusHolder;
+  public Transform menuHolder;
 
   [Header("Side")]
   public bool showSide = false;
@@ -57,6 +61,9 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
 
   void Update()
   {
+    if (showName)
+      UpdateName();
+
     if (showRange)
       UpdateRange();
 
@@ -88,8 +95,9 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
   {
     characterPortrait.sprite = characterImage;
   }
-  void UpdateName()
+  public void UpdateName()
   {
+    characterNameText.gameObject.SetActive(showName);
     characterNameText.SetText(characterName);
   }
 
@@ -103,6 +111,8 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
     if (eventData.button == PointerEventData.InputButton.Right)
     {
       menu.character = this;
+      menu.statusHolder = statusHolder;
+      menu.menuHolder = menuHolder;
       print("Right Clicked!");
       ShowMenu(!menuActive);
     }
@@ -136,8 +146,8 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
       RoundedValue(transform.position.y, ((float)size / 4)),
       0);
 
-    print(((float)size / 4));
-    print(((float)size * 2));
+    //print("Offset: " + ((float)size / 4) + " // Fraction: " + ((float)size * 2));
+    //print("Rounded Value is " + RoundedValue(transform.position.x, ((float)size / 4)));
   }
 
   float RoundedValue(float input, float offset = .25f, float fraction = 2)

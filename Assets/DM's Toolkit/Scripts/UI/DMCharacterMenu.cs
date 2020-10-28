@@ -6,6 +6,7 @@ public class DMCharacterMenu : MonoBehaviour
 {
   public DMCharacter character;
   public Transform menuHolder;
+  public Transform statusHolder;
 
   public DMCharacterButton[] buttons;
   private void OnEnable()
@@ -14,15 +15,11 @@ public class DMCharacterMenu : MonoBehaviour
     foreach (var button in buttons)
     {
       button.character = character;
+      button.menu = this;
+      button.statusHolder = statusHolder;
     }
 
-    menuHolder = character.transform.Find("Menu");
     transform.SetParent(menuHolder);
     transform.localPosition = Vector3.zero;
-  }
-
-  private void Update()
-  {
-    
   }
 }

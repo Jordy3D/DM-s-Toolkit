@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using TMPro;
+
 public class DMUIManager : MonoBehaviour
 {
   public GameObject DMUI;
@@ -13,10 +15,18 @@ public class DMUIManager : MonoBehaviour
   public GameObject spawnDetailPanel;
   bool spawnDetailPanelIsActive = false;
 
+  public TMP_Dropdown spriteSelectorDropdown;
+  public LoadSprites spriteLoader;
 
   private void Start()
   {
     DMUI.SetActive(false);
+
+    spriteSelectorDropdown.AddOptions(spriteLoader.spritesLoaded);
+    foreach (var option in spriteSelectorDropdown.options)
+    {
+      option.text = option.image.name;
+    }
   }
   void Update()
   {

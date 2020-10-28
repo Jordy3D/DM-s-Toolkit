@@ -403,7 +403,6 @@ GameObject:
   - component: {fileID: 1038799089523413061}
   - component: {fileID: 1038799089523413066}
   - component: {fileID: 1038799089523413063}
-  - component: {fileID: 1038799089523413060}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -444,6 +443,8 @@ MonoBehaviour:
   characterImage: {fileID: 21300000, guid: 7c0a2c57097a6c540a7cd376481fb4d1, type: 3}
   characterPortrait: {fileID: 1038799089569428121}
   characterNameText: {fileID: 1038799088998421556}
+  statusHolder: {fileID: 1038799089003464442}
+  menuHolder: {fileID: 1038799089723395337}
   showSide: 0
   sideDisplay: {fileID: 1038799090508017592}
   sideColour: {r: 1, g: 0, b: 0, a: 1}
@@ -452,7 +453,9 @@ MonoBehaviour:
   rangeDisplay: {fileID: 1038799089232584133}
   rangeColour: {r: 1, g: 0, b: 0, a: 1}
   rangeAlpha: 0.3
+  size: 0
   menu: {fileID: 0}
+  menuOriginalScale: 0.005025044
 --- !u!61 &1038799089523413063
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -479,18 +482,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49680167, y: 0.48070216}
   m_EdgeRadius: 0
---- !u!114 &1038799089523413060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1038799089523413067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780889b007c073847bbb991b5b643464, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1038799089569428126
 GameObject:
   m_ObjectHideFlags: 0
