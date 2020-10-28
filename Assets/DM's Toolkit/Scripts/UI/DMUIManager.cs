@@ -18,25 +18,32 @@ public class DMUIManager : MonoBehaviour
   public TMP_Dropdown spriteSelectorDropdown;
   public LoadSprites spriteLoader;
 
+  public GameObject spriteButton;
+  public Transform iconButtonHolder;
+  public GameObject iconSelectPanel;
+  bool iconSelectPanelIsActive = false;
+
+  public DMCharacterSpawner spawner;
+
   private void Start()
   {
     DMUI.SetActive(false);
 
-    spriteSelectorDropdown.AddOptions(spriteLoader.spritesLoaded);
-    foreach (var option in spriteSelectorDropdown.options)
+    foreach (var sprite in spriteLoader.spritesLoaded)
     {
-      option.text = option.image.name;
+      //print("I'm trying...");
+      DMSpawnerButton button = Instantiate(spriteButton, iconButtonHolder).GetComponent<DMSpawnerButton>();
+      button.spawner = spawner;
+      button.buttonImage.sprite = sprite;
     }
   }
   void Update()
   {
     if (Input.GetKeyDown(menuKey))
-    {
       ToggleMenu();
-    }
   }
 
-  void ToggleMenu()
+  public void ToggleMenu()
   {
     menuIsActive = !menuIsActive;
     DMUI.SetActive(menuIsActive);
@@ -46,5 +53,11 @@ public class DMUIManager : MonoBehaviour
   {
     spawnDetailPanelIsActive = !spawnDetailPanelIsActive;
     spawnDetailPanel.SetActive(spawnDetailPanelIsActive);
+  }
+
+  public void ToggleIconSelect()
+  {
+    iconSelectPanelIsActive = !iconSelectPanelIsActive;
+    iconSelectPanel.SetActive(iconSelectPanelIsActive);
   }
 }

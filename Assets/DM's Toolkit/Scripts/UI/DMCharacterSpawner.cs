@@ -13,8 +13,9 @@ public class DMCharacterSpawner : MonoBehaviour
   public Sprite incomingSprite;
   public int incomingSize;
 
+  public Image incomingSpriteImage;
+
   public TMP_InputField nameSelect;
-  public TMP_Dropdown spriteSelect;
   public TMP_Dropdown sizeSelect;
 
   public DMCharacterMenu menu;
@@ -37,7 +38,7 @@ public class DMCharacterSpawner : MonoBehaviour
   public void GetIncomingTraits()
   {
     //incomingSprite = spriteSelect.value;
-    incomingSprite = spriteSelect.options[spriteSelect.value].image;
+    //incomingSprite = spriteSelect.options[spriteSelect.value].image;
     incomingName = nameSelect.text == "" ? incomingSprite.name : nameSelect.text;
     incomingSize = sizeSelect.value + 1;
   }

@@ -8,7 +8,7 @@ public class LoadSprites : MonoBehaviour
   public List<Sprite> spritesLoaded;
   public string[] foldersToLoadFrom;
 
-  void Start()
+  void Awake()
   {
     LoadIcons();
   }
