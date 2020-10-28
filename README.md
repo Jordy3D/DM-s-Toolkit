@@ -9,7 +9,7 @@ Update their status
 And spawn new units in  
 ![Spawn](https://i.imgur.com/rQq84H1.gif)  
 
-You can set new sprites by going to UIManager > DMUI > SpawnDetails > ImageDropdown and setting them there.  
+You can set new sprites by going to DM's Toolkit > Resources, create a folder there with your sprites, then add the folder name to the UIManager's Load Sprites script.
 You may need to adjust the Pixels Per Unit value of your sprites so that they fit.  
 ![New](https://i.imgur.com/Z1b08h1.png)  
 
