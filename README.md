@@ -6,8 +6,10 @@ You can move units around
 ![Move](https://i.imgur.com/hwu6mOH.gif)  
 Update their status  
 ![Status](https://i.imgur.com/LjNHXyw.gif)  
-And spawn new units in  
-![Spawn](https://i.imgur.com/rQq84H1.gif)  
+Spawn new units in  
+![Spawn](https://i.imgur.com/xSWq7qM.gif)  
+Hide their names and Delete them  
+![HideandDestroy](https://i.imgur.com/nv14UCo.gif)  
 
 You can set new sprites by going to DM's Toolkit > Resources, create a folder there with your sprites, then add the folder name to the UIManager's Load Sprites script.
 You may need to adjust the Pixels Per Unit value of your sprites so that they fit.  
