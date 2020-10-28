@@ -402,7 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1038799089523413061}
   - component: {fileID: 1038799089523413066}
-  - component: {fileID: 1038799089523413063}
+  - component: {fileID: 2820240249029297231}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -442,6 +442,7 @@ MonoBehaviour:
   characterName: Dabblebob Albaratie
   characterImage: {fileID: 21300000, guid: 7c0a2c57097a6c540a7cd376481fb4d1, type: 3}
   characterPortrait: {fileID: 1038799089569428121}
+  showName: 1
   characterNameText: {fileID: 1038799088998421556}
   statusHolder: {fileID: 1038799089003464442}
   menuHolder: {fileID: 1038799089723395337}
@@ -456,8 +457,8 @@ MonoBehaviour:
   size: 0
   menu: {fileID: 0}
   menuOriginalScale: 0.005025044
---- !u!61 &1038799089523413063
-BoxCollider2D:
+--- !u!58 &2820240249029297231
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -469,19 +470,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.008318484}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.49680167, y: 0.48070216}
-  m_EdgeRadius: 0
+  m_Radius: 0.24682304
 --- !u!1 &1038799089569428126
 GameObject:
   m_ObjectHideFlags: 0
