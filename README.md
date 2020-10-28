@@ -11,7 +11,6 @@ And spawn new units in
 
 You can set new sprites by going to DM's Toolkit > Resources, create a folder there with your sprites, then add the folder name to the UIManager's Load Sprites script.
 You may need to adjust the Pixels Per Unit value of your sprites so that they fit.  
-![New](https://i.imgur.com/Z1b08h1.png)  
 
 It is currently rather limited, but may grow more in the future.
 
