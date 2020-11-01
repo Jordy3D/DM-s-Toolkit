@@ -22,6 +22,7 @@ public class DMUIManager : MonoBehaviour
   public Transform iconButtonHolder;
   public GameObject iconSelectPanel;
   bool iconSelectPanelIsActive = false;
+  public Tooltip tooltip;
 
   public DMCharacterSpawner spawner;
 
@@ -35,6 +36,7 @@ public class DMUIManager : MonoBehaviour
       DMSpawnerButton button = Instantiate(spriteButton, iconButtonHolder).GetComponent<DMSpawnerButton>();
       button.spawner = spawner;
       button.buttonImage.sprite = sprite;
+      button.GetComponent<TooltipTarget>().tooltip = tooltip;
     }
   }
   void Update()

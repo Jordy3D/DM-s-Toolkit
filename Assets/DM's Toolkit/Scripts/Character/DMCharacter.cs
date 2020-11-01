@@ -31,7 +31,7 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
   [Range(0, 1)]
   public float rangeAlpha = .3f;
 
-  [Header("Size")]
+  [Header("Size"), Range(1,4)]
   public int size;
 
   [Header("Menu")]
