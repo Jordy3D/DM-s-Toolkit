@@ -31,7 +31,7 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
   [Range(0, 1)]
   public float rangeAlpha = .3f;
 
-  [Header("Size"), Range(1,4)]
+  [Header("Size"), Range(1, 4)]
   public int size;
 
   [Header("Menu")]
@@ -39,6 +39,8 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
   bool menuActive = false;
   public float menuOriginalScale = 0.005025044f;
 
+  public TextMeshPro cueIndicator, numberIndicator;
+  public bool showCue, showNumber;
 
   Camera cam;
   private Plane dragPlane;
@@ -49,14 +51,14 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
     cam = Camera.main;
 
     UpdateName();
-
     UpdatePortrait();
-
     UpdateSide();
-
     UpdateRange();
-
     UpdateSize();
+    UpdateCue("ND");
+    UpdateNumber(1);
+
+    OnMouseUp();
   }
 
   void Update()
@@ -71,14 +73,14 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
       UpdateSide();
   }
 
-  void ShowMenu(bool _state)
+  public void ShowMenu(bool _state)
   {
     menu.gameObject.SetActive(_state);
     menuActive = _state;
     menu.transform.localScale = (Vector3.one * 0.005025044f);
   }
 
-  void UpdateRange()
+  public void UpdateRange()
   {
     rangeDisplay.gameObject.SetActive(showRange);
 
@@ -86,12 +88,12 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
     rangeDisplay.color = rangeColour;
     rangeDisplay.transform.localScale = Vector3.one * range;
   }
-  void UpdateSide()
+  public void UpdateSide()
   {
     sideDisplay.gameObject.SetActive(showRange);
     sideDisplay.color = sideColour;
   }
-  void UpdatePortrait()
+  public void UpdatePortrait()
   {
     characterPortrait.sprite = characterImage;
   }
@@ -100,10 +102,24 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
     characterNameText.gameObject.SetActive(showName);
     characterNameText.SetText(characterName);
   }
-
-  void UpdateSize()
+  public void UpdateSize()
   {
     transform.localScale = Vector3.one * size;
+  }
+  public void UpdateCue(string _cue)
+  {
+    //ND = No Damage (>76%HP)
+    //SD = Slight Damage (<75% HP)
+    //MD = Moderate Damage(< 50 % HP)
+    //CD = Critical Damage(< 25 % HP)
+    //TD = Terminal Damage(1 HP)
+    cueIndicator.gameObject.SetActive(showCue);
+    cueIndicator.SetText(_cue);
+  }
+  public void UpdateNumber(int _num)
+  {
+    numberIndicator.gameObject.SetActive(showNumber);
+    numberIndicator.SetText(_num.ToString());
   }
 
   public void OnPointerClick(PointerEventData eventData)
@@ -113,7 +129,6 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
       menu.character = this;
       menu.statusHolder = statusHolder;
       menu.menuHolder = menuHolder;
-      print("Right Clicked!");
       ShowMenu(!menuActive);
     }
   }
@@ -137,12 +152,11 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
     dragPlane.Raycast(camRay, out planeDist);
     transform.position = camRay.GetPoint(planeDist) + offset;
   }
-  #endregion
 
   private void OnMouseUp()
   {
     transform.position = new Vector3(
-      RoundedValue(transform.position.x, ((float)size / 4)), 
+      RoundedValue(transform.position.x, ((float)size / 4)),
       RoundedValue(transform.position.y, ((float)size / 4)),
       0);
 
@@ -154,4 +168,5 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
   {
     return ((Mathf.Round((input - offset) * fraction)) / fraction) + offset;
   }
+  #endregion
 }

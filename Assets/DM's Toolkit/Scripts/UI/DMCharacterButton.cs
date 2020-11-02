@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using TMPro;
 
@@ -14,18 +15,33 @@ public class DMCharacterButton : MonoBehaviour
 
   public DMCharacterMenu menu;
 
-  public void ToggleStatus(string status)
+  public bool hasImage = false;
+  public Image myImage;
+
+  private void Start()
   {
-    var curStatus = statusHolder?.Find(status);
+    if (hasImage)
+    {
+      myImage = GetComponentsInChildren<Image>()[1];
+      myImage.color = Color.gray;
+    }
+  }
+
+  public void ToggleStatus()
+  {
+    var curStatus = statusHolder?.Find(transform.name);
+    print(myImage.transform.parent.name);
     if (!curStatus)
     {
       TextMeshPro statusText = GameObject.Instantiate(statusPrefab, statusHolder).GetComponent<TextMeshPro>();
-      statusText.name = status;
-      statusText.SetText(status);
+      statusText.name = transform.name;
+      statusText.SetText(transform.name);
+      myImage.color = Color.white;
     }
     else
     {
       Destroy(curStatus.gameObject);
+      myImage.color = Color.gray;
     }
   }
 
