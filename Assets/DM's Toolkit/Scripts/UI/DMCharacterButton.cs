@@ -30,7 +30,6 @@ public class DMCharacterButton : MonoBehaviour
   public void ToggleStatus()
   {
     var curStatus = statusHolder?.Find(transform.name);
-    print(myImage.transform.parent.name);
     if (!curStatus)
     {
       TextMeshPro statusText = GameObject.Instantiate(statusPrefab, statusHolder).GetComponent<TextMeshPro>();
