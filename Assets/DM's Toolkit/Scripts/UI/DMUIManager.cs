@@ -12,7 +12,10 @@ public class DMUIManager : MonoBehaviour
 
   bool menuIsActive = false;
 
-  public GameObject spawnDetailPanel;
+  public List<GameObject> menuPanels;
+
+  [Header("Spawning Icons")]
+  //public GameObject spawnDetailPanel;
   bool spawnDetailPanelIsActive = false;
 
   public TMP_Dropdown spriteSelectorDropdown;
@@ -25,6 +28,10 @@ public class DMUIManager : MonoBehaviour
   public Tooltip tooltip;
 
   public DMCharacterSpawner spawner;
+
+  [Header("Spawning Icons")]
+  //public GameObject initiativeDetailPanel;
+  bool initiativeDetailPanelIsActive = false;
 
   private void Start()
   {
@@ -51,15 +58,50 @@ public class DMUIManager : MonoBehaviour
     DMUI.SetActive(menuIsActive);
   }
 
+  public void TogglePanel(int panelID)
+  {
+    DisableAllOtherPanels(panelID);
+
+    if (menuPanels[panelID].activeInHierarchy)
+      menuPanels[panelID].SetActive(false);
+    else
+      menuPanels[panelID].SetActive(true);
+  }
+
   public void ToggleSpawnDetails()
   {
-    spawnDetailPanelIsActive = !spawnDetailPanelIsActive;
-    spawnDetailPanel.SetActive(spawnDetailPanelIsActive);
+    //spawnDetailPanelIsActive = !spawnDetailPanelIsActive;
+    menuPanels[0].SetActive(spawnDetailPanelIsActive);
   }
 
   public void ToggleIconSelect()
   {
     iconSelectPanelIsActive = !iconSelectPanelIsActive;
     iconSelectPanel.SetActive(iconSelectPanelIsActive);
+  }
+
+  public void ToggleInitiativeDetails()
+  {
+    //initiativeDetailPanelIsActive = !initiativeDetailPanelIsActive;
+    menuPanels[1].SetActive(initiativeDetailPanelIsActive);
+  }
+
+  public void DisableAllPanels()
+  {
+    foreach (var panel in menuPanels)
+      SetPanelEnabled(panel, false);
+  }
+
+  public void DisableAllOtherPanels(int id)
+  {
+    for (int i = 0; i < menuPanels.Count; i++)
+      if (i != id)
+        menuPanels[i].SetActive(false);
+  }
+
+  void SetPanelEnabled(GameObject panel, bool state)
+  {
+    state = false;
+    panel.SetActive(state);
   }
 }

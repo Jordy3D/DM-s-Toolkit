@@ -138,7 +138,7 @@ namespace BT
       //If all four flags are true, return true
       return clearFlags == new Vector4(1, 1, 1, 1) ? true : false;
     }
-    public static bool VewNotObstructed(Vector4 objectBounds, Transform _start, Transform _target, bool _debug)
+    public static bool ViewNotObstructed(Vector4 objectBounds, Transform _start, Transform _target, bool _debug)
     {
       //Stores the visibility checks
       Vector4 clearFlags = new Vector4(0, 0, 0, 0);
@@ -239,6 +239,9 @@ namespace BT
   public static class BaneMath
   {
     public static Vector2 centre = new Vector2(.5f, .5f);
+
+    public static Vector2 Mid = new Vector2(.5f, .5f);
+    public static Vector2 ScreenMid = new Vector2(Screen.width / 2, Screen.height / 2);
     /// <summary>
     /// Centre of the screen. Useful for First Person situations.
     /// </summary>

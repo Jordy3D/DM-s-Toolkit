@@ -264,16 +264,83 @@ namespace BT
       return true;
     }
 
-    public static float KinematicVelocity(this Transform _object, Vector3 _lastPosition)
+    /// <summary>
+    /// Gets the world position from the centre of the main Perspective Camera.
+    /// </summary>
+    /// <param name="z"></param>
+    /// <returns></returns>
+    public static Vector3 GetWorldPos(float z)
     {
-      var pos = _object.position;
-      var diff = (pos - _lastPosition);
-      var velocity = diff / Time.deltaTime;
+      Ray myRay = Camera.main.ScreenPointToRay(ScreenMid());
 
-      var outVel = velocity.magnitude;
+      Plane ground = new Plane(Vector3.forward, new Vector3(0, 0, z));
+      float distance;
+      ground.Raycast(myRay, out distance);
 
-      return outVel;
+      return myRay.GetPoint(distance);
     }
+
+    /// <summary>
+    /// Gets the world position from the centre of a given Perspective Camera.
+    /// </summary>
+    /// <param name="z"></param>
+    /// <param name="cam"></param>
+    /// <returns></returns>
+    public static Vector3 GetWorldPos(float z, Camera cam)
+    {
+      Ray myRay = cam.ScreenPointToRay(ScreenMid());
+
+      Plane ground = new Plane(Vector3.forward, new Vector3(0, 0, z));
+      float distance;
+      ground.Raycast(myRay, out distance);
+
+      return myRay.GetPoint(distance);
+    }
+
+    /// <summary>
+    /// Gets the world position from the centre of the main Perspective Camera with an offset.
+    /// </summary>
+    /// <param name="z"></param>
+    /// <param name="cam"></param>
+    /// <returns></returns>
+    public static Vector3 GetWorldPos(float z, Vector2 offset)
+    {
+      Ray myRay = Camera.main.ScreenPointToRay(ScreenMid() - offset);
+
+      Plane ground = new Plane(Vector3.forward, new Vector3(0, 0, z));
+      float distance;
+      ground.Raycast(myRay, out distance);
+
+      return myRay.GetPoint(distance);
+    }
+
+    /// <summary>
+    /// Gets the world position from the centre of a given Perspective Camera with an offset.
+    /// </summary>
+    /// <param name="z"></param>
+    /// <param name="cam"></param>
+    /// <returns></returns>
+    public static Vector3 GetWorldPos(float z, Camera cam, Vector2 offset)
+    {
+      Ray myRay = cam.ScreenPointToRay(ScreenMid() - offset);
+
+      Plane ground = new Plane(Vector3.forward, new Vector3(0, 0, z));
+      float distance;
+      ground.Raycast(myRay, out distance);
+
+      return myRay.GetPoint(distance);
+    }
+
+    //public static float KinematicVelocity(this Transform _object, Vector3 _lastPosition)
+    //{
+    //  var pos = _object.position;
+    //  var diff = (pos - _lastPosition);
+    //  var velocity = diff / Time.deltaTime;
+
+    //  var outVel = velocity.magnitude;
+
+    //  return outVel;
+    //}
 
     #endregion
 
@@ -330,6 +397,11 @@ namespace BT
 
       return string.Format("<color={0}>{1}</color>", _hex, _string);
     }
+    #endregion
+
+    #region Misc
+    public static Vector2 Mid() { return new Vector2(.5f, .5f); }
+    public static Vector2 ScreenMid() { return new Vector2(Screen.width / 2, Screen.height / 2); }
     #endregion
   }
   public enum Direction

@@ -39,8 +39,6 @@ public class DMCharacterSpawner : MonoBehaviour
 
   public void GetIncomingTraits()
   {
-    //incomingSprite = spriteSelect.value;
-    //incomingSprite = spriteSelect.options[spriteSelect.value].image;
     incomingName = nameSelect.text == "" ? incomingSprite.name : nameSelect.text;
     incomingSize = sizeSelect.value + 1;
   }
@@ -58,5 +56,4 @@ public class DMCharacterSpawner : MonoBehaviour
 
   public Vector2 Mid() { return new Vector2(.5f, .5f); }
   public Vector2 ScreenMid() { return new Vector2(Screen.width / 2, Screen.height / 2); }
-
 }
