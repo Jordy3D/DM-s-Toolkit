@@ -43,6 +43,7 @@ public class DMUIManager : MonoBehaviour
       DMSpawnerButton button = Instantiate(spriteButton, iconButtonHolder).GetComponent<DMSpawnerButton>();
       button.spawner = spawner;
       button.buttonImage.sprite = sprite;
+      button.name = sprite.name;
       button.GetComponent<TooltipTarget>().tooltip = tooltip;
     }
   }
