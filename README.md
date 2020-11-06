@@ -18,4 +18,7 @@ It is currently rather limited, but may grow more in the future.
 This was made in Unity 2019.1.13f1, but I can't see why it would break too much in other versions.  
 This currently lacks Build support and is just a project in-editor, but still usable.  
 
+A couple of people have mentioned charging for this, but I don't think it's ready for that.  
+However, if you do wish to support this and see it grow more, then support is appreciated at [Ko-fi](https://ko-fi.com/jordy3d) or [Buymeacoffee](https://www.buymeacoffee.com/jordy3d)  
+
 The map drawing is not mine, I found it on [Pinterest](https://www.pinterest.com.au/pin/AVFT2DVN6ZcXeIOxDBcLe6fQVD0NV068S-kt4i0G_MA-CWXGVG6LsgY/)
