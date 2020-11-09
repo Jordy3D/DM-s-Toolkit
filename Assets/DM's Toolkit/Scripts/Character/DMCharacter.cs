@@ -17,11 +17,14 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
   public Transform statusHolder;
   public Transform menuHolder;
 
+  #region Side
   [Header("Side")]
   public bool showSide = false;
   public SpriteRenderer sideDisplay;
   public Color sideColour = Color.red;
+  #endregion
 
+  #region Range
   [Header("Range")]
   public bool showRange;
   [Range(0, 5)]
@@ -30,17 +33,34 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
   public Color rangeColour = Color.red;
   [Range(0, 1)]
   public float rangeAlpha = .3f;
+  #endregion
 
+  #region Size
   [Header("Size"), Range(1, 4)]
   public int size;
+  #endregion
 
+  #region Menu
   [Header("Menu")]
   public DMCharacterMenu menu;
   bool menuActive = false;
   public float menuOriginalScale = 0.005025044f;
+  #endregion
 
+  #region Misc
   public TextMeshPro cueIndicator, numberIndicator;
   public bool showCue, showNumber;
+  #endregion
+
+  #region Selected
+  [Header("Selected")]
+  public bool isSelected;
+  public SpriteRenderer selectedDisplay;
+  public Color selectedColor = Color.cyan;
+  [Range(0, 1)]
+  public float selectedAlpha = .3f;
+  public DMSelection selection;
+  #endregion
 
   Camera cam;
   private Plane dragPlane;
@@ -122,6 +142,15 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
     numberIndicator.SetText(_num.ToString());
   }
 
+  public void UpdateSelected(bool _state)
+  {
+    isSelected = _state;
+    selectedDisplay.gameObject.SetActive(_state);
+
+    selectedColor.a = selectedAlpha;
+    selectedDisplay.color = selectedColor;
+  }
+
   public void OnPointerClick(PointerEventData eventData)
   {
     if (eventData.button == PointerEventData.InputButton.Right)
@@ -142,6 +171,11 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
     float planeDist;
     dragPlane.Raycast(camRay, out planeDist);
     offset = transform.position - camRay.GetPoint(planeDist);
+
+    if (isSelected)
+    {
+      selection.GetOffsetsFromSelected(GetComponent<DMSelectable>());
+    }
   }
 
   void OnMouseDrag()
