@@ -43,6 +43,23 @@ public class DMCharacterButton : MonoBehaviour
       myImage.color = Color.gray;
     }
   }
+  
+  public void DisableStatus()
+  {
+    //CheckForImage();
+    myImage.color = Color.gray;
+  }
+
+  void CheckForImage()
+  {
+    if (!hasImage)
+      myImage = GetComponentsInChildren<Image>()[1];
+  }
+
+  public void EnableStatus()
+  {
+    myImage.color = Color.white;
+  }
 
   void UpdateRange()
   {

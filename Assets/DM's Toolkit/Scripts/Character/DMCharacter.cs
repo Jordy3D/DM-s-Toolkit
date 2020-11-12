@@ -98,6 +98,7 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
     menu.gameObject.SetActive(_state);
     menuActive = _state;
     menu.transform.localScale = (Vector3.one * 0.005025044f);
+
   }
 
   public void UpdateRange()
@@ -172,10 +173,10 @@ public class DMCharacter : MonoBehaviour, IPointerClickHandler
     dragPlane.Raycast(camRay, out planeDist);
     offset = transform.position - camRay.GetPoint(planeDist);
 
-    if (isSelected)
-    {
-      selection.GetOffsetsFromSelected(GetComponent<DMSelectable>());
-    }
+    //if (isSelected)
+    //{
+    //  selection.GetOffsetsFromSelected(GetComponent<DMSelectable>());
+    //}
   }
 
   void OnMouseDrag()

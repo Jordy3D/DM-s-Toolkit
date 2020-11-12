@@ -1,8 +1,9 @@
 Want/Difficult
 DM/Player POVs
+Initiative (List like FFX)
+Selection and Move multiple
+Players
 
 Want/Easy
-Dice roller
-Initiative (List like FFX)
-
-Players
+//Dice roller
+//Turn Counter

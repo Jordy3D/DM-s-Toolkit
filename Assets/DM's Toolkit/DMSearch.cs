@@ -11,18 +11,6 @@ public class DMSearch : MonoBehaviour
   public List<Transform> searchElements;
   public string searchString;
 
-  // Start is called before the first frame update
-  void Start()
-  {
-
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-
-  }
-
   public void UpdateSearch()
   {
     searchString = searchInput.text;
