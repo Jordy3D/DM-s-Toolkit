@@ -10,6 +10,9 @@ public class TheEveryController : MonoBehaviour
   [ReorderableList] public List<KeyCode> keys;
   [ReorderableList] public List<UnityEvent> events;
 
+  public bool enableAnyKey;
+  public UnityEvent anyKeyEvent;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -28,6 +31,11 @@ public class TheEveryController : MonoBehaviour
           events[keys.IndexOf(kcode)].Invoke();
         }
       }
+    }
+
+    if (enableAnyKey && Input.anyKeyDown)
+    {
+      anyKeyEvent.Invoke();
     }
   }
 
