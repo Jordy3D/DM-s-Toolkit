@@ -6,21 +6,29 @@ using TMPro;
 
 public class DMDiceRoll : MonoBehaviour
 {
-  public int sideCount, diceCount, highestRolls;
+  public int sideCount, diceCount, highestRolls, modCount;
 
-  public TMP_InputField diceCountInput, sideCountInput, highCountInput;
+  public TMP_InputField diceCountInput, sideCountInput, highCountInput, modCountInput;
   public TextMeshProUGUI rollOutput;
+
+  public bool hasHistory = false;
+  public TextMeshProUGUI rollHistoryPrefab;
+  public Transform rollHistoryContainer;
 
   public void RollDice()
   {
-    sideCount = StrInt(sideCountInput.text == "" ? 20.ToString() : sideCountInput.text);
-    diceCount = StrInt(diceCountInput.text == "" ? 1.ToString() : diceCountInput.text);
-    highestRolls = StrInt(highCountInput.text == "" ? 0.ToString() : highCountInput.text);
+    sideCount = sideCountInput.text == "" ? 20 : StrInt(sideCountInput.text);
+    diceCount = diceCountInput.text == "" ? 1 : StrInt(diceCountInput.text);
+    if (hasHistory)
+      highestRolls = highCountInput.text == "" ? 0 : StrInt(highCountInput.text);
+    else
+      highestRolls = 0;
+    modCount = modCountInput.text == "" ? 0 : StrInt(modCountInput.text);
 
-    DiceRoller(sideCount, diceCount, highestRolls);
+    DiceRoller(sideCount, diceCount, highestRolls, modCount);
   }
 
-  void DiceRoller(int sides = 20, int dice = 1, int high = 1, bool stopDupes = false)
+  void DiceRoller(int sides = 20, int dice = 1, int high = 1, int mod = 0, bool stopDupes = false)
   {
     List<int> highestRolls = new List<int>();
 
@@ -72,16 +80,38 @@ public class DMDiceRoll : MonoBehaviour
 
     string finalOutput = "";
     if (dice == 1)
-      finalOutput += $"The die rolled was {output}.";
+    {
+      finalOutput += $"Rolled: {output}.";
+      if (modCount != 0)
+        finalOutput += $"\nWith modifier: {StrInt(output) + modCount}";
+    }
     else
-      finalOutput += $"The dice rolled were {output} with a sum of {rollSum}";
+    {
+      finalOutput += $"Rolled: {output} with a sum of: {rollSum}";
+      if (modCount != 0)
+        finalOutput += $"\nWith modifier: {rollSum + modCount}";
+    }
 
     if (high > 2)
-      finalOutput += $"\n\nYour highest rolls are {highOutput} with the sum of the highest rolls being {highRollSum}";
+    {
+      finalOutput += $"\n\nHighest Rolls: {highOutput}, with a sum of: {highRollSum}";
+      if (modCount != 0)
+        finalOutput += $"\nWith modifier: {highRollSum + modCount}";
+    }
     else if (high == 1)
-      finalOutput += $"Your highest roll was {highOutput}";
-
+    {
+      finalOutput += $"\n\nHighest Roll: {highOutput}";
+      if (modCount != 0)
+        finalOutput += $"\nWith modifier: {StrInt(highOutput) + modCount}";
+    }
     rollOutput.text = finalOutput;
+
+    if (hasHistory)
+    {
+      TextMeshProUGUI rollHistory = Instantiate(rollHistoryPrefab, rollHistoryContainer).GetComponent<TextMeshProUGUI>();
+      rollHistory.SetText(finalOutput);
+      rollHistory.transform.SetAsFirstSibling();
+    }
   }
 
   bool ArrayContains(int[] array, int val) { return (Array.IndexOf(array, val)) > -1 ? true : false; }
