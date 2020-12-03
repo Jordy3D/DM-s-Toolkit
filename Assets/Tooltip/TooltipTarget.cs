@@ -11,26 +11,6 @@ public class TooltipTarget : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
 
   bool tracking;
 
-  void Update()
-  {
-    //if (!EventSystem.current.IsPointerOverGameObject())
-    //{
-    //  PointerEventData eventData = new PointerEventData(EventSystem.current);
-    //  TooltipEnable(eventData);
-    //}
-    //if (IsPointerOverGameObject(this.gameObject))
-    //{
-    //  PointerEventData eventData = new PointerEventData(EventSystem.current);
-
-    //  TooltipEnable(eventData);
-    //}
-    //else
-    //{
-    //  if (tooltip.body.activeInHierarchy)
-    //    TooltipDisable();
-    //}
-  }
-
   public void TooltipEnable(PointerEventData eventData)
   {
     tooltip.body.SetActive(true);
@@ -39,15 +19,16 @@ public class TooltipTarget : MonoBehaviour, IPointerExitHandler, IPointerEnterHa
     tooltip.transform.position = transform.position;
     //print(eventData.position);
     tooltip.UpdateText(sprite.name);
+
+    tooltip.UpdateHeight(60); //Default = 43
+    tooltip.UpdatePosition(50); //Default = 0
   }
 
   public void TooltipDisable()
   {
     tooltip.body.SetActive(false);
   }
-
-
-
+   
   public void OnPointerExit(PointerEventData eventData)
   {
     TooltipDisable();
